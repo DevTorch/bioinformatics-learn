@@ -1,0 +1,13 @@
+name: bioinformatics-learn
+channels: [bioconda, conda-forge, pytorch]
+dependencies:
+  - python=3.11
+  - biopython
+  - jupyterlab
+  - jupytext
+  - matplotlib
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - rpy2
