@@ -1,5 +1,5 @@
 import os
-from typing import Any
+import pandas as pd
 
 
 def read_fasta_file(file_path: str) -> dict:
@@ -100,3 +100,7 @@ def get_info(seq: str):
         f'Sequence          : {seq}\n'
         f'Reverse complement: {reverse_complement(seq)}\n'
     )
+
+def fasta_to_pandas(fasta_dict: dict):
+    fasta_dict = {label: [len(seq), gc_content(seq)] for label, seq in fasta_dict.items()}
+    return pd.DataFrame.from_dict(fasta_dict, orient='index', columns=['Length' , 'GC content'])
