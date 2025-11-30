@@ -31,6 +31,7 @@
 ## 🔍 Расширение
 - Пробежаться по "Python for Biologists" главы 1–3
 - прочитать статью “What is FASTA format” на Biostars — 5 минут, но фундаментально
+- 
 ### Дополнительные материалы:
 ```bash
 wget -nd https://cocalc.com/share/download/df81e09e5b8f16f28b3a2e818dcdd4560e7818ae/support/2015-04-02-ISB-notes/ls_orchid.fasta.txt -O monthly_plan/week_one/data/ls_orchid.fasta
