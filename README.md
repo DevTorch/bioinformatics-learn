@@ -19,6 +19,10 @@ conda activate bioinformatics-learn
 ```bash
 conda env update -f bioinformatics-learn.yml --prune
 ```
+## Тесты:
+```bash
+python -m pytest -q
+```
 
 ## Обновление conda base:
 ```bash
