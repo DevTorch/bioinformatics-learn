@@ -1,8 +1,9 @@
 import os
 import pandas as pd
+from pathlib import Path
 
 
-def read_fasta_file(file_path: str) -> dict:
+def read_fasta_file(file_path: Path) -> dict:
     """
     Read a FASTA file and return a dictionary containing the sequences.
 
@@ -31,7 +32,7 @@ def read_fasta_file(file_path: str) -> dict:
             fasta_dict[fasta_label] += line
     return fasta_dict
 
-def gc_content(seq):
+def gc_content(seq) -> float:
     """
     Return the GC content of a given sequence.
 
@@ -43,7 +44,9 @@ def gc_content(seq):
     Returns:
     str: The GC content of the given sequence as a string with two decimal places.
     """
-    return format((seq.count('G') + seq.count('C')) / len(seq) * 100, '.2f')
+    if not seq:
+        raise ValueError("Sequence is empty")
+    return (seq.count("G") + seq.count("C")) / len(seq) * 100
 
 def gc_content_dict(fasta_dict: dict) -> dict:
     """
@@ -78,20 +81,28 @@ def reverse_complement(seq: str):
     return seq.translate(mapping)[::-1]
 
 def get_subsequence(seq: str, start: int = 0, end: int = -1) -> str:
+
     """
     Return a subsequence of a given sequence.
 
     Parameters:
-    seq (str): The sequence to get the subsequence from.
-    start (int): The start index of the subsequence. Defaults to 0.
-    end (int): The end index of the subsequence. Defaults to -1, which means the end of the sequence.
+    seq (str): The sequence to get a subsequence from.
+    start (int): The starting index of the subsequence. Defaults to 0.
+    end (int): The ending index of the subsequence. Defaults to -1, which means the end of the sequence.
 
     Returns:
     str: The subsequence of the given sequence.
+
+    Raises:
+    ValueError: If the given indices are invalid.
     """
-    if end == -1:
+    if end == -1 or end > len(seq):
         end = len(seq)
-    return seq[start:end] if start < end < len(seq) else "Invalid indices"
+
+    if not (0 <= start < end <= len(seq)):
+        raise ValueError("Invalid indices")
+
+    return seq[start:end]
 
 def get_info(seq: str):
     return (

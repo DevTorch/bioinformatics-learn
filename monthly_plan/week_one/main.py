@@ -1,10 +1,17 @@
 import fasta_functions as ff
 import bioseq_functions as bf
+from pathlib import Path
 
-base_path = '/mnt/c/Users/Torchez/PycharmProjects/bioinformatics-learn/'
+# base_path = '/mnt/c/Users/Torchez/PycharmProjects/bioinformatics-learn/'
+#
+# fasta_path = base_path + 'monthly_plan/week_one/data/ls_orchid.fasta'
+# ls_orchid_gbk = base_path + 'monthly_plan/week_one/data/ls_orchid.gbk'
 
-fasta_path = base_path + 'monthly_plan/week_one/data/ls_orchid.fasta'
-ls_orchid_gbk = base_path + 'monthly_plan/week_one/data/ls_orchid.gbk'
+BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "data"
+
+fasta_path = DATA_DIR / "ls_orchid.fasta"
+ls_orchid_gbk = DATA_DIR / "ls_orchid.gbk"
 
 fasta_dict = ff.read_fasta_file(fasta_path)
 # for key, value in fasta_dict.items():
@@ -28,3 +35,4 @@ print('GC content   : ' + bf.gc_content(fasta_get).__str__())
 print(bf.reverse_complement(fasta_get))
 print(bf.transcribe(fasta_get))
 print(bf.translate(fasta_get))
+bf.plot_fasta_gc_content(fasta_path, 'fasta')
