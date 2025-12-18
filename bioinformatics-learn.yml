@@ -12,3 +12,5 @@ dependencies:
   - scikit-learn
   - rpy2
   - pytest
+  - seaborn
+  - python-dotenv
